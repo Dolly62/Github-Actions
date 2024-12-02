@@ -5,6 +5,9 @@ on:
         branches:
             - master
             - test
+    pull_request:  # Event: Whenever a pull request is opened on the repository
+        branches:
+            - master
 
 jobs:
     on-push:   # Job 1
