@@ -5,14 +5,18 @@ on:
         branches:
             - master
             - test
+    pull_request:  # Event: Whenever a pull request is opened on the repository
+        branches:
+            - master
+    workflow_dispatch: # Event: Manually trigger the workflow
 
 jobs:
     on-push:   # Job 1
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps:  # Steps to be executed in the job
-            - name: "Running on push request"  # Step 1
-              run: echo "Running on push request"
+            - name: "Running on master/test branch"  # Step 1
+              run: echo "Running on master/test branch"
 
     on-pull-request: # Job 2
         if: github.event_name == 'pull_request'
@@ -20,3 +24,10 @@ jobs:
         steps:  # Steps to be executed in the job
             - name: "Running on pull request"  # Step 2
               run: echo "Running on pull request"
+
+    on-workflow-dispatch: # Job 3
+        if: github.event_name == 'workflow_dispatch'
+        runs-on: ubuntu-latest
+        steps:  # Steps to be executed in the job
+            - name: "Running on workflow dispatch"  # Step 3
+              run: echo "Running on workflow dispatch"
